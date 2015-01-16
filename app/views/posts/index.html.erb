@@ -1,8 +1,8 @@
 <h3>Latest posts</h3>
 <table class="table">
 <tr>
+    <th>Vote</th>
     <th>Score</th>
-    <th>Title</th>
     <th>User</th>
     <th>Posted</th>
     <th>Comments</th>
@@ -10,11 +10,12 @@
 <% if @posts.any? %>
     <% @posts.each do |post| %>
         <tr>
-            <td>0</td>
+            <td><%= button_to "Vote", post_votes_path(post) %></td>
+            <td><%= post.votes.length %></td>
             <td><%= link_to post.title,post.link, :target=>'_blank' %></td>
             <td><%= post.user ? post.user.name : 'Unknown' %></td>
             <td><%= format_creation_time post %> </td>
-            <td>0</td>
+            <td><%= link_to "See All Comments", post_comments_path(post) %></td>
         </tr>
     <% end %>
 <% else %>

@@ -1,0 +1,24 @@
+<li class="comment">
+	<small>
+		Posted By: <%= comment.user ? comment.user.name : "Unknown" %>,
+		<%= format_creation_time comment %>
+	</small>
+	<div>
+	Comment:<%= comment.body %>
+		<%= link_to "Reply", new_comment_comment_path(comment) %>
+	</div>
+	<div>
+		<%= button_to "Vote for This Comment", comment_vote_path(comment) %>
+	</div>
+	<div>
+		<%= comment.votes.length %>
+	</div>
+
+
+	<% unless comment.comments.empty? %>
+	<ul class="list">
+		<%= render :partial => "comment", :collection => comment.comments %>
+	</ul>
+	<%end%>
+
+</li>
