@@ -10,6 +10,7 @@
 <% if @posts.any? %>
     <% @posts.each do |post| %>
         <tr>
+            <td><%= post.votes.where(user_id:@current_user['id']).any? %></td>
             <td><%= button_to "Vote", post_votes_path(post) %></td>
             <td><%= post.votes.length %></td>
             <td><%= link_to post.title,post.link, :target=>'_blank' %></td>

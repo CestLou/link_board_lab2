@@ -3,6 +3,7 @@ class PostsController < ApplicationController
     def index
         @posts = Post.all
         @votes = Vote.all
+
     end
 
     def show
@@ -66,7 +67,11 @@ class PostsController < ApplicationController
       #   flash warning "you already upvotes"
       # else
       #   user.votes << post.votes.create!
-    # end
+      # end
+
+      # respond_to do |format|
+      #   format.json { result: !existing_vote }
+      #   format.html { redirect_to post_comments_path(parent_post(comment)) }
 
 
 
@@ -76,6 +81,11 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title,:link)
+  end
+
+  def parent_post comment
+    return comment if comment.class == Post
+    return parent_post(comment.commentable)
   end
 
 end

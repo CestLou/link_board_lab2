@@ -8,7 +8,7 @@
 		<%= link_to "Reply", new_comment_comment_path(comment) %>
 	</div>
 	<div>
-		<%= button_to "Vote for This Comment", comment_vote_path(comment) %>
+		<%= button_to "Vote for This Comment", comment_votes_path(comment) %>
 	</div>
 	<div>
 		<%= comment.votes.length %>
